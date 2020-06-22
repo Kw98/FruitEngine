@@ -3,10 +3,10 @@
 
 namespace FE {
 
-	FE::Scene& SceneManager::CreateScene(const std::string& sceneName)
+	FE::Scene& SceneManager::CreateScene(const std::string& sceneName, const FE::Scene::LoadingFunction& loadingfunction)
 	{
 		std::size_t	id = _idManager.use();
-		_scenes.emplace(id, Scene(sceneName, id));
+		_scenes.emplace(id, Scene(sceneName, id, loadingfunction));
 		if (_scenes.size() == 1)
 			_current = id;
 		return _scenes[id];

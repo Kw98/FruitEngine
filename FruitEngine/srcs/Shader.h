@@ -8,14 +8,14 @@
 
 namespace FE {
 
-	static enum shaderlog {
+	enum class shaderlog {
 		SHADER,
-		PROGRAM,
+		PROGRAM
 	};
 
 	class Shader {
 	public:
-		Shader() : _init(false) {}
+		Shader() : _init(false), _programid(0), _vshaderid(0), _fshaderid(0) {}
 		~Shader() {}
 
 		void	InitFromFiles(const std::string& vshaderfile, const std::string fshaderfile);

@@ -11,9 +11,15 @@ namespace FE {
 		int	height;
 		int	nbchannel;
 
+		if (alpha) {
+			_internalFormat = GL_RGBA;
+			_imageFormat = GL_RGBA;
+		}
 		unsigned char* data = stbi_load(file.c_str(), &width, &height, &nbchannel, 0);
-		if (data)
+		if (data) {
 			Generate(width, height, data);
+			_init = true;
+		}
 		else
 			std::cerr << "Couldn't load file: " << file << std::endl;
 		stbi_image_free(data);
@@ -34,6 +40,7 @@ namespace FE {
 		glTexImage2D(GL_TEXTURE_2D, 0, _internalFormat, _width, _height, 0, _imageFormat, GL_UNSIGNED_BYTE, data);
 		glBindTexture(GL_TEXTURE_2D, 0);
 		//glGenerateMipmap(GL_TEXTURE_2D);
+
 	}
 
 }

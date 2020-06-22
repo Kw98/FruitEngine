@@ -18,7 +18,7 @@ namespace FE {
 		
 		~SceneManager() {}
 
-		FE::Scene& CreateScene(const std::string& sceneName);
+		FE::Scene& CreateScene(const std::string& sceneName, const FE::Scene::LoadingFunction& loadingfunction);
 
 		void	ChangeScene(const std::size_t& sceneId);
 		void	ChangeScene(const std::string& sceneName);

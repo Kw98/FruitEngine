@@ -7,6 +7,7 @@ namespace FE {
 
 	void	Scene::Load()
 	{
+		_loader(*this);
 		// plutot call une callback user qui créer la scène avec tout les objets et call le start ?
 		for (auto&& behavior : _scripts) {
 			for (auto&& entt : behavior.second) {
@@ -18,9 +19,16 @@ namespace FE {
 
 	void	Scene::UnLoad()
 	{
-		//delete all ?
+		_deletedEntities.clear();
+		_scripts.clear();
+		for (auto&& entt : _entities)
+			FE::FRegister->delete_entity(entt);
 	}
 
+	// avoir juste une list des scripts par scene et passer directement via le sparset et call les scripts
+	// avoir un set d'objet disable et find si l'objet est dedans on lance
+	//
+	//
 	void	Scene::Update()
 	{
 		//when working on physics change this part ith fixedUpdate

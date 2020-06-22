@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -147,7 +147,10 @@
     <ClCompile Include="srcs\main.cpp" />
     <ClCompile Include="srcs\Scene.cpp" />
     <ClCompile Include="srcs\SceneManager.cpp" />
+    <ClCompile Include="srcs\Shader.cpp" />
+    <ClCompile Include="srcs\SpriteRenderer.cpp" />
     <ClCompile Include="srcs\stb.cpp" />
+    <ClCompile Include="srcs\Texture.cpp" />
     <ClCompile Include="srcs\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -165,6 +168,7 @@
     <ClInclude Include="srcs\SceneManager.h" />
     <ClInclude Include="srcs\Shader.h" />
     <ClInclude Include="srcs\SparseSet.hpp" />
+    <ClInclude Include="srcs\Sprite.h" />
     <ClInclude Include="srcs\SpriteRenderer.h" />
     <ClInclude Include="srcs\stb_image.h" />
     <ClInclude Include="srcs\Texture.h" />

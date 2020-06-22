@@ -3,9 +3,10 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <functional>
+#include <iostream>
 
 #include "FRegister.h"
-//#include "GameObject.h"
 
 namespace FE {
 
@@ -13,8 +14,10 @@ namespace FE {
 
 	class Scene {
 	public:
-		Scene(const std::string &name, const std::size_t &id) : _name(name), _id(id) {}
-		Scene() = default;
+		using LoadingFunction = std::function<void(FE::Scene&)>;
+
+		Scene(const std::string& name, const std::size_t& id, const FE::Scene::LoadingFunction& loadfunction) : _name(name), _id(id), _loader(loadfunction) {}
+		Scene() : _name("none"), _id(0), _loader([](FE::Scene& sc) { std::cout << "none" << std::endl; }) {}
 		~Scene() {
 			for (auto&& entt : _entities)
 				FE::FRegister->delete_entity(entt);
@@ -62,6 +65,7 @@ namespace FE {
 
 		std::string	_name;
 		std::size_t	_id;
+		FE::Scene::LoadingFunction	_loader;
 		std::vector<std::size_t>	_entities;
 		std::vector<std::size_t>	_deletedEntities;
 		std::unordered_map<std::type_index, std::vector<std::size_t>>	_scripts;
